@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <!-- VUE JS -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <title>Podstawy VUE JS</title>
+</head>
+<body>
+    <main class="container" id="app">
+
+        <div class="row">
+            <div class="text-center col-xl-6 offset-xl-3 my-4">
+                 Witaj  {{wiadomosc}}
+                 <input class="form-control" type="text" v-model="wiadomosc">
+                <br><br>
+                 <input class="form-control" type="text" v-model="imie">
+                 <input class="form-control" type="text" v-model="nazwisko">
+                   <h2>{{nazwa}}</h2> 
+
+
+                 <span v-if="wiadomosc.length" class="text-success">No wreszcie coś napisałeś! :)</span>
+                 <span v-if="magia" class="text-danger">MAGIA</span>
+                 <br>
+                 <button class="btn btn-primary" @click="konsola">KLIK</button>
+                 <button class="btn btn-warning" @click="magia = !magia">MAGIA</button>
+            </div>
+        </div>
+       
+    </main>
+
+    <script>
+
+    const app = {
+        data(){
+            return {
+                wiadomosc: '',
+                magia: false,
+                imie: '',
+                nazwisko: ''
+            }
+        },
+        methods: {
+            konsola(){
+
+                console.log('jestem metodą VUE');
+            }
+        },
+        computed: {
+            nazwa : function(){
+                return this.imie + ' ' + this.nazwisko;
+            }
+        }
+    }
+
+    Vue.createApp(app).mount('#app')
+    </script>
+</body>
+</html>
